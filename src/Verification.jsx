@@ -52,7 +52,7 @@ export default function Verification() {
                 </ul>
 
             </nav>
-            <div className={`pt-10 pl-9 space-y-7  transition-all duration-500  lg:hidden absolute w-full ${hook ? 'left-0' : '-left-full'}`}>
+            <div className={`pt-10 pl-9 space-y-7   transition-all duration-300  lg:hidden absolute w-full ${hook ? 'left-0' : '-left-full'}`}>
                 <div>
                     <div>
                         <h1 className='text-md'>Find designers</h1>

@@ -7,7 +7,7 @@ import Verification from "./Verification";
 function App() {
   return (
     <div>
-      <Verification />
+      <Login />
     </div>
   );
 }

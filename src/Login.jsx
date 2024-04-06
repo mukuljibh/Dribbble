@@ -1,6 +1,7 @@
 import React from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { Checkbox } from '@mui/material';
+
 function Login() {
 
   return (
@@ -8,7 +9,10 @@ function Login() {
 
       <div className='h-screen md:block hidden md:sticky md:top-0' style={{ flexBasis: "35%", minWidth: "30%" }}>
         {/* Add a border to the parent container for visibility */}
-        <img src="/sample.jpg" alt='' className='h-full object-cover flex-shrink min-w-[100%] ' />
+        <video loop autoplay="" muted className='h-full object-cover flex-shrink min-w-[100%]'>
+          <source src="./login-video.mp4" type='video/mp4' />
+          Your browser does not support the video tag.
+        </video>
       </div>
 
       <div className='flex' >
