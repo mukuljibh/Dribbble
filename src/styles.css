@@ -20,3 +20,19 @@
     background-color: #e91e62ce/* Adjust background color when checked */
   }
  
+  @keyframes bounce-in {
+    0% {
+      transform: translateX(0px);
+    }
+    50% {
+      transform: translateX(50px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  
+  .bounce-in {
+    animation: bounce-in 0.5s ease-in-out;
+  }
+  

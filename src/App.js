@@ -2,13 +2,18 @@ import Login from "./Login";
 import Practice from "./Practice";
 import Profile from "./Profile";
 import UserPreference from "./UserPreference";
-import Verification from "./Verification";
+import Header from "./Header";
+import Content from "./Content";
+import Footer from "./Footer";
+
 
 function App() {
   return (
-    <div>
-      <Login />
-    </div>
+    <div >
+      <Header />
+      <Content />
+      <Footer />
+    </div >
   );
 }
 export default App;

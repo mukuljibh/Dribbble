@@ -1,43 +1,52 @@
 import * as React from 'react';
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Avatar from '@mui/material/Avatar';
 
-export default function Verification() {
+export default function Header() {
 
     const [hook, setHook] = useState(false);
+    useEffect(() => {
+        if (hook) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
 
+    }, [hook]);
     function handle() {
         setHook(!hook)
     }
 
     return (
 
-        <div className="  border-b-2 border-gray-200 h-screen ">
-            <nav className="  h-20 flex justify-between border-2 border-red-400 text-zinc-500 font-semibold">
+        <div className="  border-b-2 border-gray-200">
+            <nav className="  h-20 flex justify-between  border-2 border-red-400 text-zinc-500 font-semibold">
 
-                <div className='lg:hidden flex self-center gap-4'>
-                    <div>
-                        <button onClick={handle}><img className="h-6 " src="./menu.png" /></button>
+                <div className='lg:hidden flex self-center border gap-4'>
+                    <div className='self-end'>
+                        <button onClick={handle}><img className="h-6 " src="./menu.png" alt="dribble logo" /></button>
                     </div>
-                    <div>
-                        <img className="h-6 lg:hidden  lg:pl-5" src="/Dribbble-Black.png" alt="logo" />
+                    <div >
+                        <img className="h-10 lg:hidden  lg:pl-5" src="./brands/dribbble-pink.png" alt="logo" />
                     </div>
                 </div>
 
                 <ul className="lg:inline-flex lg:gap-7 lg:self-center border-2 border-pink-400  hidden ">
-                    <li ><img className="h-6  lg:pl-5" src="/Dribbble-Black.png" alt="logo" /></li>
-                    <li ><a href="#">Inspiration</a></li>
-                    <li ><a href="#">Find Work</a></li>
-                    <li ><a href="#">Learn Design</a></li>
-                    <li><a href="#">Go Pro</a></li>
-                    <li ><a href="#">Hire Designers</a></li>
+                    <li ><img className="h-9  lg:pl-5" src="./brands/dribbble-pink.png" alt="logo" /></li>
+                    <div className='flex self-center gap-4'>
+                        <li  ><a href="#">Inspiration</a></li>
+                        <li ><a href="#">Find Work</a></li>
+                        <li ><a href="#">Learn Design</a></li>
+                        <li><a href="#">Go Pro</a></li>
+                        <li ><a href="#">Hire Designers</a></li>
+                    </div>
                 </ul>
 
                 <ul className=" border-2 border-green-400 inline-flex gap-7 self-center lg:mr-5 mr-3 " >
 
                     <li class="flex items-center">
                         <div className='flex lg:bg-gray-100 p-1 rounded-md'>
-                            <img className=" h-6 self-center" src='./search.png' />
+                            <img className=" h-6 self-center" src='./search.png' alt="Search icon" />
 
                             <input placeholder="Search" className="w-24 h-8 outline-none bg-gray-100 rounded-md lg:block hidden " type="text"></input>
 
@@ -52,8 +61,8 @@ export default function Verification() {
                 </ul>
 
             </nav>
-            <div className={`pt-10 pl-9 space-y-7   transition-all duration-300  lg:hidden absolute w-full ${hook ? 'left-0' : '-left-full'}`}>
-                <div>
+            <div className={`pt-10 bg-white pl-9 space-y-7 transition-all duration-500  lg:hidden absolute w-full ${hook ? 'left-0 ' : '-left-full opacity-0 '} ${hook ? 'bounce-in' : ''}`}>
+                <div  >
                     <div>
                         <h1 className='text-md'>Find designers</h1>
                     </div>
