@@ -1,4 +1,4 @@
-import Login from "./Login";
+import Login from "./Login/Login";
 import Practice from "./Practice";
 import Profile from "./Profile";
 import UserPreference from "./UserPreference";
@@ -10,9 +10,7 @@ import Footer from "./Footer";
 function App() {
   return (
     <div >
-      <Header />
-      <Content />
-      <Footer />
+      <Login />
     </div >
   );
 }
