@@ -101,8 +101,8 @@ function Login() {
         </video>
       </div>
 
-      <div className="flex border-2 ">
-        <div className="mt-20 space-y-10 ml-7 border ">{/*this is target div*/}
+      <div className="flex  ">
+        <div className="mt-20 space-y-10 ml-7  ">{/*this is target div*/}
           <div className="md:space-x-3 md:space-y-3 ">
             <h1 className="md:text-3xl font-bold	text-2xl ">Sign up to Dribbble</h1>
             <div className="w-auto h-8 pt-4 ">
@@ -111,9 +111,9 @@ function Login() {
               </li>
             </div>
           </div>
-          <div className="flex  h-16 border ">
+          <div className="flex  h-16  ">
             <div className="md:w-1/2 ">
-              <div className="border flex gap-2 ">
+              <div className=" flex gap-2 ">
                 <h1 className="font-bold ">Name </h1>
                 <img className={` ${state.Name.flag === false ? 'hidden' : state.Name.flag === true ? 'h-4 self-center' : 'hidden'}`} src="./attention.svg" />
 
@@ -126,7 +126,7 @@ function Login() {
               </div>
             </div>
             <div className=" md:w-1/2    ">
-              <div className="border flex gap-2 ">
+              <div className=" flex gap-2 ">
                 <h1 className="font-bold ">Username</h1>
                 <img className={` ${state.Username.flag === false ? 'hidden' : state.Username.flag === true ? 'h-4 self-center' : 'hidden'}`} src="./attention.svg" />
 
@@ -141,7 +141,7 @@ function Login() {
           </div>
 
           <div>
-            <div className="border flex gap-2 ">
+            <div className=" flex gap-2 ">
               <h1 className="font-bold ">Email </h1>
               <img className={` ${state.Email.flag === false ? 'hidden' : state.Email.flag === true ? 'h-4 self-center' : 'hidden'}  `} src="./attention.svg" />
 
@@ -149,7 +149,7 @@ function Login() {
             <input id={state.Email.flag === true ? "alert" : state.Email.flag === false ? "change" : ""} onChange={validateAndSetState} className="pl-3 pr-3  rounded-xl py-1 border-2 bg-neutral-100 transition duration-300 ease-in-out hover:border-pink-200 hover:shadow-md focus:border-pink-200 focus:shadow-md outline-none" style={{ width: "calc(100% - 2rem)" }} name="Email" />
           </div>
           <div className="mt-6 flex flex-col h-16 ">
-            <div className="border flex gap-2 ">
+            <div className=" flex gap-2 ">
               <h1 className="font-bold ">Password </h1>
               <img className={` ${state.Password.flag === false ? 'hidden' : state.Password.flag === true ? 'h-4 self-center' : 'hidden'}  `} src="./attention.svg" />
 
@@ -161,10 +161,10 @@ function Login() {
               </h1>
             </div>
           </div>
-          <div className="text-zinc-500 border flex flex-col gap-1 border-yellow-200 h-20 ">
+          <div className="text-zinc-500  flex flex-col gap-1  h-20 ">
 
-            <div className="border border-green-500 flex ">
-              <Checkbox name="Terms" onClick={validateAndSetState} />
+            <div className=" flex ">
+              <Checkbox name="Terms" defaultChecked={true} onClick={validateAndSetState} />
               <div className=" md:block hidden text-start text-sm ">
                 <h1>Creating an acount means you'r okay with our Terms of Service,</h1>
                 <h1>Settings Privacy Policy, and our default Notification</h1>
@@ -176,7 +176,7 @@ function Login() {
                 Settings.
               </div>
             </div>
-            <div className=" text-xs pt-1 border">
+            <div className=" text-xs pt-1">
               <h1 className={`text-xs relative  text-red-500 ${state.Terms.flag ? "transition-all duration-500" : ""}`}>
                 {state.Terms.flag ? state.Terms.msg : null}
               </h1>
@@ -194,7 +194,7 @@ function Login() {
             <p >This site is projected by reCAPTCHA and the Google <br />Privacy Policy and Terms of Service apply</p>
           </div>
         </div>
-        <div className="mt-4 mr-3 md:block hidden	border text-xs">
+        <div className="mt-4 mr-3 md:block hidden	 text-xs">
           <h6>Already a member? Sign in</h6>
         </div>
       </div>
