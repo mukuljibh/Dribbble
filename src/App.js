@@ -1,17 +1,19 @@
-import Login from "./Login/Login";
-import Practice from "./Practice";
-import Profile from "./Profile";
-import UserPreference from "./UserPreference";
-import Header from "./Header";
-import Content from "./Content";
-import Footer from "./Footer";
+import UserPreferencePage from './UserPreferencePage.jsx'
+import ProfileCreationPage from './ProfileCreationPage.jsx';
+import VerifyEmailPage from './EmailVerification/VerifyEmailPage.jsx';
+import SignupPage from './Signup/SignupPage.jsx';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React from 'react';
 
-
-function App() {
-  return (
-    <div >
-      <Login />
-    </div >
-  );
+export default function App() {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<SignupPage />} />
+                <Route path="/profile" element={<ProfileCreationPage />} />
+                <Route path="/profile-preference" element={<UserPreferencePage />} />
+                <Route path="/verify-email" element={<VerifyEmailPage />} />
+            </Routes>
+        </BrowserRouter>
+    )
 }
-export default App;
