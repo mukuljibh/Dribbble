@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from 'react-router-dom';
 import { sendEmailToUserAPI } from "./apiService";
 import { useSelector } from 'react-redux'
@@ -9,12 +9,14 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import { pink } from '@mui/material/colors';
 
 export default function UserPreferencePage() {
+
     const userDetails = useSelector((state) => state.user.userDetails)
-    const [cards, setCards] = useState([
-        { heading: "I'm designer looking to share my work", description: " As a designer, you can share your work by creating an impressive online portfolio where peoples can see your talent. ", imgSrc: "/designer.png" },
+    const [cards, setCards] = useState([]);
+    useEffect(() => {
+        setCards([{ heading: "I'm designer looking to share my work", description: " As a designer, you can share your work by creating an impressive online portfolio where peoples can see your talent. ", imgSrc: "/designer.png" },
         { heading: "I'm looking for hire a designer", description: "Dribbble is the leading source for design inspiration with over 7 million shots from a vast community of designers.", imgSrc: "/hire.png" },
-        { heading: "I'm looking for design inspiration", description: "With over 7 million shots from a vast community of designers, Dribbble is the leading source for design inspiration.", imgSrc: "/inspiration.png" },
-    ]);
+        { heading: "I'm looking for design inspiration", description: "With over 7 million shots from a vast community of designers, Dribbble is the leading source for design inspiration.", imgSrc: "/inspiration.png" },])
+    }, [])
     let Navigate = useNavigate(true);
     const [hook, setHook] = useState([]);
 
