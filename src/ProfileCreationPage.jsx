@@ -2,40 +2,49 @@ import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { updateProfile } from './reducers/userDetailsReducer';
 import { useFormik } from "formik";
-import { sendImage } from './apiService';
+import { sendImageAPI } from './apiService';
 
 
 export default function ProfileCreationPage() {
+    let Navigate = useNavigate(true);
+    const [imageUploaded, setImageUploaded] = useState(false);
+    //this will detect whether the file is selected or not
+    const [selectedFile, setSelectedFile] = useState(null);
     const dispatcher = useDispatch();
     const formik = useFormik({
         initialValues: {
             ImageUrl: "",
             Location: ""
         },
-        onSubmit: (async (values) => {
-            //updating the global state with profile picture url later consumed by another component
-            dispatcher(updateProfile(values))
-            Navigate('/profile-preference')
+        onSubmit: ((values) => {
+            //if no image is selected then then  location values if enter will be updated in the global state
+            //if image is selected then it waits for complete fetches from api then set imageUploaded true then this executes
+            //if image is in uploading process then during at that period of time it waits for uploading. next button would'nt work, even location is enter 
+            //the next button become functional when image uploading is done.
+            if (imageUploaded || !selectedFile) {
+                dispatcher(updateProfile({ ...values }))
+                Navigate('/profile-preference')
+            }
         })
     })
-    let Navigate = useNavigate(true);
-    const [imageUrl, setImageUrl] = useState(false);
 
     function handleUpload(event) {
 
         const file = event.target.files[0]
-        const url = URL.createObjectURL(file);
-        setImageUrl(url);
+        setSelectedFile(file)
         //convert file into url using cloudnary API
-        sendImage(file)
+        sendImageAPI(file)
             .then((url) => {
+                setImageUploaded(true)
                 formik.setFieldValue('ImageUrl', url);
             })
             .catch((error) => {
-                console.error(error);
+                setSelectedFile(false)
+                console.log("error from profile creation page")
+                alert(error);
             });
     }
 
@@ -67,7 +76,7 @@ export default function ProfileCreationPage() {
                         </div>
                     </div>
                     <div className="flex  gap-10  pr-20 mt-6" style={{ justifyContent: "start", width: "100%" }}>
-                        {imageUrl ? <img className="ml-1 md:w-40 md:h-40 w-48 h-32 border-2 border-gray-400  rounded-full flex justify-center" src={imageUrl} alt="profile" />
+                        {formik.values.ImageUrl ? <img className="ml-1 md:w-40 md:h-40 w-48 h-32 border-2 border-gray-400  rounded-full flex justify-center" src={formik.values.ImageUrl} alt="profile" />
                             : <div className=' ml-1 md:w-40 md:h-40 w-48 h-32 border-2 border-gray-400 border-dashed rounded-full flex justify-center '>
                                 <div className='self-center  '>
                                     <svg className="md:w-5 w-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M149.1 64.8L138.7 96H64C28.7 96 0 124.7 0 160V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V160c0-35.3-28.7-64-64-64H373.3L362.9 64.8C356.4 45.2 338.1 32 317.4 32H194.6c-20.7 0-39 13.2-45.5 32.8zM256 192a96 96 0 1 1 0 192 96 96 0 1 1 0-192z" /></svg>
@@ -79,10 +88,11 @@ export default function ProfileCreationPage() {
                                 <Button className='border border-black-100'
                                     component="label"
                                     onChange={handleUpload}
+                                    accept="image/*"
                                     style={{ color: 'black' }}
                                 >
                                     Choose image
-                                    <VisuallyHiddenInput type="file" />
+                                    <VisuallyHiddenInput type="file" accept=".png .jpg" />
                                 </Button>
                             </div>
                             <div>
@@ -103,9 +113,8 @@ export default function ProfileCreationPage() {
                                     <input id="Location" type="text" name="Location" onChange={formik.handleChange} value={formik.Location} className=" border-b-2 outline-none" placeholder='Enter Your Location'></input>
                                 </div>
 
-
                                 <div >
-                                    <button type='submit' className={`mt-8 text-white px-20 py-2 rounded-md ${imageUrl ? 'bg-pink-500' : 'bg-pink-300'}`}>
+                                    <button type='submit' className={`mt-8 text-white px-20 py-2 rounded-md hover:bg-pink-600   ${imageUploaded || formik.values.Location ? 'bg-pink-500' : 'bg-pink-300'} ${formik.values.ImageUrl ? '' : 'bg-pink-300'}`}>
                                         Next</button>
                                 </div>
                             </form>
@@ -119,4 +128,4 @@ export default function ProfileCreationPage() {
 
         </div >
     )
-}
+} 

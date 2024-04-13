@@ -32,7 +32,8 @@ export default function Header() {
                 </div>
 
                 <ul className="lg:inline-flex lg:gap-7 lg:self-center border-2 border-pink-400  hidden ">
-                    <li ><img className="h-9  lg:pl-5" src="./brands/dribbble-pink.png" alt="logo" /></li>
+                    <li ><img className="h-10  lg:pl-5" src="https://res.cloudinary.com/df8suxer2/image/upload/v1712998371/ig5oylfncdwgxc0nybiz.png" alt="logo" /></li>
+
                     <div className='flex self-center gap-4'>
                         <li  ><a href="#">Inspiration</a></li>
                         <li ><a href="#">Find Work</a></li>

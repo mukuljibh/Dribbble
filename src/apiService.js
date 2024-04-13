@@ -1,48 +1,53 @@
 import axios from 'axios'
 
-function postData(userDetails) {
-    axios.post('http://localhost:4000/register', {
-        userDetails
+function postDataAPI(userDetails) {
+    return new Promise((resolve, reject) => {
+        axios.post('http://localhost:4000/register', {
+            userDetails
+        })
+            .then((msg) => {
+                resolve(msg.data.message)
+            })
+            .catch((err) => {
+                console.log(err.response.data.error)
+                reject(err.response.data.error)
+            })
     })
-        .then(() => {
-            alert("data is posted")
-        })
-        .catch((error) => {
-            alert("something went wrong", error)
-            console.log(userDetails)
-        })
 }
 
-function sendEmailToUser(userDetails) {
-    axios.post('http://localhost:4000/send-email', {
-        userDetails
+function sendEmailToUserAPI(userDetails) {
+    return new Promise((resolve, reject) => {
+        axios.post('http://localhost:4000/send-email', {
+            userDetails
+        })
+            .then(() => {
+                resolve("email is sent")
+            })
+            .catch((error) => {
+                alert("email not able to sent", error)
+            })
     })
-        .then(() => {
-            alert("email is sent")
-        })
-        .catch((error) => {
-            alert("email not able to sent", error)
-        })
 }
 
-async function sendImage(ImageUrl) {
+function sendImageAPI(ImageUrl) {
     const formData = new FormData();
     formData.append('file', ImageUrl);
     formData.append('upload_preset', 'srpyzeky'); // Specify your upload preset
-    try {
-        const response = await axios.post(
+    return new Promise((resolve, reject) => {
+        axios.post(
             "https://api.cloudinary.com/v1_1/df8suxer2/image/upload",
             formData
-        );
-        return response.data.secure_url;
-    } catch (error) {
-        alert("Error uploading image: " + error);
-        throw error;
-    }
+        ).then((response) => {
+            resolve(response.data.secure_url)
+        }).catch(() => {
+            reject("Error uploading image")
+        })
+    })
+
 }
 
 export {
-    postData,
-    sendEmailToUser,
-    sendImage
+    postDataAPI,
+    sendEmailToUserAPI,
+    sendImageAPI
 }

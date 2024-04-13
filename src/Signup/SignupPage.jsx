@@ -4,9 +4,9 @@ import ErrorMessages from "./ErrorMessage";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { updateProfile } from '../reducers/userDetailsReducer.js'
-import { postData } from "../apiService.js";
+import { postDataAPI } from "../apiService.js";
 import signupVideo from "./assets/videos/signup-video.mp4";
 
 export default function SignupPage() {
@@ -44,11 +44,18 @@ export default function SignupPage() {
 
     }),
     onSubmit: (userDetails) => {
-      //
+      //preventing to go to other route until database is not connected
+      postDataAPI(userDetails)
+        .then((msg) => {
+          alert(msg)
+          Navigate('/profile');
+        })
+        .catch((err) => {
+          alert(err)
+        })
 
-      postData(userDetails)
       dispatch(updateProfile({ Email: userDetails.Email, Username: userDetails.Username, Name: userDetails.Name }))
-      Navigate('/profile');
+
     }
 
   });
