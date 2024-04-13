@@ -1,4 +1,3 @@
-import { Copyright } from "@mui/icons-material";
 import React from 'react';
 
 
@@ -10,7 +9,7 @@ export default function Footer() {
                     <div className="border-2 border-yellow-400 w-1/4 ">
 
                         <div className="text-zinc-700 xl:text-base text-sm">
-                            <img className="h-20" src="./dribbble.png" />
+                            <img className="h-20" src="./dribbble.png" alt="logo" />
                             <h1> Dribbble is the world's leading</h1>
                             <p>community for creatives to share, grow,</p>
                             <p>and get hired.</p>
@@ -191,7 +190,7 @@ export default function Footer() {
                     </div>
                     <div className="flex border ">
                         <p className="font-bold self-center">20,501,853 <span className="text-zinc-500">shots dribbbled</span></p>
-                        <img className="h-7 " src="./brands/dlogo.png" />
+                        <img className="h-7 " src="./brands/dlogo.png" alt="logo" />
                     </div>
                 </div>
 

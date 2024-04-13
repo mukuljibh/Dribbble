@@ -1,5 +1,5 @@
 
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import React from 'react';
 
 
@@ -14,7 +14,7 @@ export default function Content() {
                         <h1 className="md:text-3xl text-xl font-bold">Please verify you email...</h1>
                     </div>
                     <div className="self-center">
-                        <img className="md:h-36 h-28" src="./picture1.jpg" />
+                        <img className="md:h-36 h-28" src="./picture1.jpg" alt="logo" />
                     </div>
                     <div className="md:text-base text-sm self-center text-zinc-500">
                         <h1>Please verify your email address. We,ve sent a confirmation email to:</h1>
@@ -29,12 +29,12 @@ export default function Content() {
                     <div className="pt-4 md:text-base text-sm self-center text-zinc-500 border ">
                         <h1 className="">
                             Didn't receive the email? Check your Spam folder, it may have been caught by a filter. if you still dont't see it, you
-                            can <a className="text-pink-500 font-semibold" href="#">resend the confirmation email.</a>
+                            can <span className="text-pink-500 font-semibold" >resend the confirmation email.</span>
                         </h1>
                     </div>
                     <div className="pt-4 md:text-base text-sm self-center text-zinc-500 border ">
                         <h1 className="">
-                            Wrong email address?<a className="text-pink-500 font-semibold" href="#">  Change it.</a>
+                            Wrong email address?<span className="text-pink-500 font-semibold" >  Change it.</span>
                         </h1>
                     </div>
 
@@ -44,7 +44,7 @@ export default function Content() {
             <div className="  lg:hidden flex flex-col  md:mb-10 mb-5">
 
                 <div className="self-center">
-                    <img className="md:h-16 h-20 " src="./brands/dribbble-pink.png" />
+                    <img className="md:h-16 h-20 " src="./brands/dribbble-pink.png" alt="logo" />
                 </div>
                 <div className="flex self-center md:text-xl text-sm md:flex-norap flex-wrap gap-5 justify-center mt-3  ">
                     <h1 >

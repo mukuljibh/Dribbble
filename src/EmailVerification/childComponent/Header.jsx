@@ -35,11 +35,11 @@ export default function Header() {
                     <li ><img className="h-10  lg:pl-5" src="https://res.cloudinary.com/df8suxer2/image/upload/v1712998371/ig5oylfncdwgxc0nybiz.png" alt="logo" /></li>
 
                     <div className='flex self-center gap-4'>
-                        <li  ><a href="#">Inspiration</a></li>
-                        <li ><a href="#">Find Work</a></li>
-                        <li ><a href="#">Learn Design</a></li>
-                        <li><a href="#">Go Pro</a></li>
-                        <li ><a href="#">Hire Designers</a></li>
+                        <li >Inspiration</li>
+                        <li >Find Work</li>
+                        <li >Learn Design</li>
+                        <li>Go Pro</li>
+                        <li >Hire Designers</li>
                     </div>
                 </ul>
 

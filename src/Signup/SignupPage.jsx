@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Checkbox } from "@mui/material";
 import ErrorMessages from "./ErrorMessage";
 import { useFormik } from "formik";
@@ -10,11 +10,7 @@ import { postDataAPI } from "../apiService.js";
 import signupVideo from "./assets/videos/signup-video.mp4";
 
 export default function SignupPage() {
-  const obj = [
-    { email: "dev.bhardwaj851@gmail.com", username: "dev" },
-    { email: "mukulbhardwaj966@gmail.com", username: "mukulji" },
-    { email: "vansh1@gmail.com", username: "vanshg" },
-  ];
+
   //this hook use to navigate to the desired component
   let Navigate = useNavigate(true);
   const dispatch = useDispatch();

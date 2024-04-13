@@ -67,7 +67,7 @@ export default function UserPreferencePage() {
                         <div className={` flex flex-col h-64 w-64 justify-end `}>
                             <div className=" md:w-56 w-48 self-center mt-10 relative top-1 flex flex-col ">
                                 <div className={`transition-all duration-500 ease-out  ${hook[index]?.flag && hook[index]?.index === index ? 'w-full' : 'md:w-72 w-60 '} self-center`}>
-                                    <img src={card.imgSrc} />
+                                    <img src={card.imgSrc} alt="logo" />
                                 </div>
                                 <div className="text-center text-wrap  pt-4 font-black text-md">
                                     {card.heading}
