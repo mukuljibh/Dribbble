@@ -52,13 +52,13 @@ export default function Header() {
 
                     <li className="flex items-center">
                         <div className='flex lg:bg-gray-100 p-1 rounded-md'>
-                            <img className=" h-6 self-center" src='./search.png' alt="Search icon" />
+                            <img className=" h-6 self-center" src='https://res.cloudinary.com/df8suxer2/image/upload/v1713090886/inrtbmmu6sipc6ofh0r3.png' alt="Search icon" />
 
                             <input placeholder="Search" className="w-24 h-8 outline-none bg-gray-100 rounded-md lg:block hidden " type="text"></input>
 
                         </div>
                     </li>
-                    <li className='lg:block hidden'><img className="h-9 " src="./lock-x.png" alt="lock" /></li>
+                    <li className='lg:block hidden'><img className="h-9 " src="https://res.cloudinary.com/df8suxer2/image/upload/v1713090838/xuwdwo8st4whqg5wabvi.png" alt="lock" /></li>
                     <li>
                         {userDetails.ImageUrl ? <Avatar src={userDetails.ImageUrl} /> :
                             <Avatar sx={{ bgcolor: deepPurple[500] }} >{userDetails.Name[0].toUpperCase()}</Avatar>}
