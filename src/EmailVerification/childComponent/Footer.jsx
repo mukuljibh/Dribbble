@@ -3,27 +3,27 @@ import React from 'react';
 
 export default function Footer() {
     return (
-        <div className="lg:flex lg:flex-col hidden border-2">
-            <div className=" border-2 border-green-700 self-center pt-14">
-                <div className=" flex border-2 border-violet-300">
-                    <div className="border-2 border-yellow-400 w-1/4 ">
+        <div className="lg:flex lg:flex-col hidden bg-zinc-50 ">
+            <div className="self-center pt-14">
+                <div className=" flex border-b gap-6">
+                    <div className="w-1/4 ">
 
                         <div className="text-zinc-700 xl:text-base text-sm">
-                            <img className="h-20" src="./dribbble.png" alt="logo" />
+                            <img className="h-14" src="https://res.cloudinary.com/df8suxer2/image/upload/v1713085030/xlsuba1pijqdde2abjil.png" alt="logo" />
                             <h1> Dribbble is the world's leading</h1>
                             <p>community for creatives to share, grow,</p>
                             <p>and get hired.</p>
                         </div>
-                        <div className="flex xl:gap-4 lg:gap-3 gap-2 xl:h-8 lg:h-7 h-6 border mt-10  ">
-                            <img src="./brands/dribbble.png" alt="brand Logo" />
-                            <img src="./brands/twitter.svg" alt="twitter Logo" />
-                            <img src="./brands/facebook.svg" alt="facebook Logo" />
-                            <img src="./brands/instagram.png" alt="instagram Logo" />
-                            <img src="./brands/pinterest.svg" alt="pinterest Logo" />
+                        <div className="flex xl:gap-4 lg:gap-3 gap-2 xl:h-8 lg:h-7 h-6  mt-10  ">
+                            <img src="https://res.cloudinary.com/df8suxer2/image/upload/v1713085801/yugufxtxziph3cjg6f15.png" alt="brand icon Logo" />
+                            <img src="https://res.cloudinary.com/df8suxer2/image/upload/v1713085852/c76komfnijtkut4vi7um.svg" alt="twitter Logo" />
+                            <img src="https://res.cloudinary.com/df8suxer2/image/upload/v1713085879/etgdydjxwibpeenf9rdq.svg" alt="facebook Logo" />
+                            <img src="https://res.cloudinary.com/df8suxer2/image/upload/v1713085904/t3rfanrpl82uniszu2e0.png" alt="instagram Logo" />
+                            <img src="https://res.cloudinary.com/df8suxer2/image/upload/v1713085925/wulamgoxxvuojjwkbjha.svg" alt="pinterest Logo" />
                         </div>
                     </div>
 
-                    <div className="flex border-2  gap-14  pb-20 border-red-200 pr-10">
+                    <div className="flex gap-14  pb-20  pr-10">
                         <div className="space-y-6 text-zinc-700 ">
                             <h1 className="text-black font-bold">
                                 For designers
@@ -182,15 +182,15 @@ export default function Footer() {
 
                 </div>
 
-                <div className="flex justify-between border-2 border-orange-300 pt-12 pb-5 ">
-                    <div className="border self-center">
+                <div className="flex justify-between pt-12 pb-5 ">
+                    <div className=" self-center">
                         <footer className="text-zinc-500  ">
                             <p>&copy; 2023 Dribbble. All rights reserved.</p>
                         </footer>
                     </div>
-                    <div className="flex border ">
+                    <div className="flex  ">
                         <p className="font-bold self-center">20,501,853 <span className="text-zinc-500">shots dribbbled</span></p>
-                        <img className="h-7 " src="./brands/dlogo.png" alt="logo" />
+                        <img className="h-7 " src="https://res.cloudinary.com/df8suxer2/image/upload/v1713086204/zerctu4imvg0y6q6ulgk.png" alt="logo" />
                     </div>
                 </div>
 

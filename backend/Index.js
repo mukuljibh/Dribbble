@@ -8,7 +8,7 @@ import nodemailer from 'nodemailer';
 import { body, validationResult } from 'express-validator';
 import ErrorMessages from '../src/Signup/ErrorMessage.js';
 
-//const uri = "mongodb+srv://mukul:8368555400@dribbblecluster.xnwg76a.mongodb.net/?retryWrites=true&w=majority&appName=dribbblecluster";
+const uri = "mongodb+srv://mukul:8368555400@dribbblecluster.xnwg76a.mongodb.net/?retryWrites=true&w=majority&appName=dribbblecluster";
 
 const app = express();
 const port = 4000;
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // middleware which fetches 
 app.use(bodyParser.json());
 app.use(cors());//for cross generation support 
 
-const CONNNECTIONSTRING = "mongodb://localhost:27017/dribbble";
+const CONNNECTIONSTRING = uri
 
 function connectToDatabase() {
     //make sure that server open only when database is available
@@ -30,7 +30,9 @@ function connectToDatabase() {
     })
 }
 
-
+app.get("/sample", (req, res) => {
+    res.send("hello")
+})
 app.post("/register", [
     body("userDetails.Username")
         .notEmpty().withMessage(ErrorMessages.emptyRegexMessage)
@@ -44,7 +46,9 @@ app.post("/register", [
     body("userDetails.Email").notEmpty().withMessage(ErrorMessages.emptyRegexMessage)
         .custom(value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)).withMessage(ErrorMessages.emailRegexMessage)
 ], (req, res) => {
+
     const userDataToSave = req.body.userDetails;
+    console.log(userDataToSave)
     const UserCredentialsObj = new UserCredentialsModel(userDataToSave);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -62,6 +66,8 @@ app.post("/register", [
 })
 
 app.post("/send-email", async (req, res) => {
+
+    console.log(req.body)
     const userDataToEmail = req.body.userDetails
     var transporter = nodemailer.createTransport({
         service: 'gmail',

@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { useState, useEffect } from "react"
 import Avatar from '@mui/material/Avatar';
+import { useSelector } from 'react-redux'
+import { deepPurple } from '@mui/material/colors';
 
 export default function Header() {
+    const userDetails = useSelector((state) => state.user.userDetails)
 
     const [hook, setHook] = useState(false);
     useEffect(() => {
@@ -20,19 +23,21 @@ export default function Header() {
     return (
 
         <div className="  border-b-2 border-gray-200">
-            <nav className="  h-20 flex justify-between  border-2 border-red-400 text-zinc-500 font-semibold">
+            <nav className="  h-20 flex justify-between text-zinc-500 font-semibold">
 
-                <div className='lg:hidden flex self-center border gap-4'>
+                <div className='lg:hidden flex self-center  gap-4'>
                     <div className='self-end'>
-                        <button onClick={handle}><img className="h-6 " src="./menu.png" alt="dribble logo" /></button>
+                        <button onClick={handle}>
+                            <img className="h-6 " src="https://res.cloudinary.com/df8suxer2/image/upload/v1713086150/vd5vqsol7oag21xhlnef.png" alt="dribble logo" />
+                        </button>
                     </div>
                     <div >
-                        <img className="h-10 lg:hidden  lg:pl-5" src="./brands/dribbble-pink.png" alt="logo" />
+                        <img className="h-12 lg:hidden  lg:pl-5" src="https://res.cloudinary.com/df8suxer2/image/upload/v1713085030/xlsuba1pijqdde2abjil.png" alt="logo" />
                     </div>
                 </div>
 
-                <ul className="lg:inline-flex lg:gap-7 lg:self-center border-2 border-pink-400  hidden ">
-                    <li ><img className="h-10  lg:pl-5" src="https://res.cloudinary.com/df8suxer2/image/upload/v1712998371/ig5oylfncdwgxc0nybiz.png" alt="logo" /></li>
+                <ul className="lg:inline-flex lg:gap-7 lg:self-center hidden ">
+                    <li ><img className="h-14  lg:pl-5" src="https://res.cloudinary.com/df8suxer2/image/upload/v1713085030/xlsuba1pijqdde2abjil.png" alt="logo" /></li>
 
                     <div className='flex self-center gap-4'>
                         <li >Inspiration</li>
@@ -43,7 +48,7 @@ export default function Header() {
                     </div>
                 </ul>
 
-                <ul className=" border-2 border-green-400 inline-flex gap-7 self-center lg:mr-5 mr-3 " >
+                <ul className="inline-flex gap-7 self-center lg:mr-5 mr-3 " >
 
                     <li className="flex items-center">
                         <div className='flex lg:bg-gray-100 p-1 rounded-md'>
@@ -54,7 +59,10 @@ export default function Header() {
                         </div>
                     </li>
                     <li className='lg:block hidden'><img className="h-9 " src="./lock-x.png" alt="lock" /></li>
-                    <li><Avatar /></li>
+                    <li>
+                        {userDetails.ImageUrl ? <Avatar src={userDetails.ImageUrl} /> :
+                            <Avatar sx={{ bgcolor: deepPurple[500] }} >{userDetails.Name[0].toUpperCase()}</Avatar>}
+                    </li>
                     <li className='lg:block hidden'>
                         <button className=" h-10 w-20 text-white rounded-md bg-pink-500 ">Upload</button>
                     </li>

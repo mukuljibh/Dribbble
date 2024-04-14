@@ -61,56 +61,57 @@ export default function ProfileCreationPage() {
         width: 1,
     });
     return (
-        <div >
+        <div className=' md:flex inline-flex flex-col ' >
             <div className='flex lg:justify-start  justify-center h-28 '>
-                <img className="h-10 self-center pl-5" src="https://res.cloudinary.com/df8suxer2/image/upload/v1712836184/zlj1ovmx3prusxsruccn.png" alt="logo" />
+                <img className="h-14 absolute left-9 top-5 " src="https://res.cloudinary.com/df8suxer2/image/upload/v1713085030/xlsuba1pijqdde2abjil.png" alt="logo" />
             </div>
 
-            <div className=' flex justify-center'>
-                <div className=' md:ml-0 ml-8  inline-flex flex-col self-center  '>
+            <div className=' flex justify-center '>
+                <div className=' md:ml-0 ml-3 inline-flex flex-col self-center'>
                     <div className=' space-y-4 '>
                         <h1 className='md:text-4xl text-xl font-black'> Welcome! Let's create your profile</h1>
                         <div className='space-y-10'>
-                            <h1 className='md:text-lg  text-zinc-500 '> Let others get to know you better! You can do these later</h1>
+                            <h1 className='md:text-lg text-zinc-500 '> Let others get to know you better! You can do these later</h1>
                             <h1 className='md:text-xl font-bold'>Add an avatar</h1>
                         </div>
                     </div>
-                    <div className="flex  gap-10  pr-20 mt-6" style={{ justifyContent: "start", width: "100%" }}>
-                        {formik.values.ImageUrl ? <img className="ml-1 md:w-40 md:h-40 w-48 h-32 border-2 border-gray-400  rounded-full flex justify-center" src={formik.values.ImageUrl} alt="profile" />
-                            : <div className=' ml-1 md:w-40 md:h-40 w-48 h-32 border-2 border-gray-400 border-dashed rounded-full flex justify-center '>
+                    <div className="flex gap-10  pr-20 mt-6 " >
+                        {formik.values.ImageUrl ? <img className="ml-1 md:w-40 md:h-40 w-32 h-32 border-2 border-gray-400  rounded-full flex justify-center" src={formik.values.ImageUrl} alt="profile" />
+                            : <div className=' ml-1 md:w-40 md:h-40 w-48 h-36 border-2 border-gray-400 border-dashed rounded-full flex justify-center'>
                                 <div className='self-center  '>
                                     <svg className="md:w-5 w-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M149.1 64.8L138.7 96H64C28.7 96 0 124.7 0 160V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V160c0-35.3-28.7-64-64-64H373.3L362.9 64.8C356.4 45.2 338.1 32 317.4 32H194.6c-20.7 0-39 13.2-45.5 32.8zM256 192a96 96 0 1 1 0 192 96 96 0 1 1 0-192z" /></svg>
                                 </div>
                             </div>}
 
-                        <div className='flex flex-col gap-4 mt-5 self-start '>
-                            <div className='flex flex-col border border-black-100 font-semibold bg-slate-50 text-black rounded-md w-3/5 hover:bg-pink-200'>
-                                <Button className='border border-black-100'
+                        <div className='md:block flex flex-col gap-1 mt-5 self-start'>
+                            <div className=' flex self-center  font-semibold bg-slate-50 text-black rounded-md w-3/5 hover:bg-pink-200'>
+                                <Button className='border border-black-100 h-12 w-28 '
                                     component="label"
                                     onChange={handleUpload}
                                     accept="image/*"
-                                    style={{ color: 'black' }}
+                                    style={{ color: 'black', }}
                                 >
-                                    Choose image
+                                    <p1 className='md:text-md text-xs'> Choose image</p1>
+
                                     <VisuallyHiddenInput type="file" accept=".png .jpg" />
                                 </Button>
                             </div>
                             <div>
-                                <button className='text-zinc-500 hover:text-zinc-700 '>
+                                <button className='text-zinc-500 md:text-md text-sm hover:text-zinc-700 '>
                                     Or choose one of ours defaults
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    <div className=' flex flex-col items-start mt-14 ' >
+                    <div className='flex flex-col mt-14 ' >
                         <div className='space-y-3 '>
                             <h1 className='text-lg font-bold'>
                                 Add Your Location
                             </h1>
                             <form onSubmit={formik.handleSubmit}>
-                                <div className=' w-full '>
-                                    <input id="Location" type="text" name="Location" onChange={formik.handleChange} value={formik.Location} className=" border-b-2 outline-none" placeholder='Enter Your Location'></input>
+                                <div className='flex border-b-2'>
+                                    <input id="Location" type="text" name="Location" onChange={formik.handleChange} value={formik.Location} className="outline-none pb-2" placeholder='Enter Your Location'></input>
                                 </div>
 
                                 <div >

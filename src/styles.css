@@ -3,23 +3,6 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-
-.round-checkbox input[type="checkbox"] {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    
-    width: 1.2em;
-    height: 1.2em;
-    border-radius: 50%;
-    border: 1px solid grey; /* Adjust border color as needed */
-    outline: none;
-    cursor: pointer;
-  }
-  .round-checkbox input[type="checkbox"]:checked {
-    background-color: #e91e62ce/* Adjust background color when checked */
-  }
- 
   @keyframes bounce-in {
     0% {
       transform: translateX(0px);

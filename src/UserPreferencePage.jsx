@@ -13,9 +13,9 @@ export default function UserPreferencePage() {
     const userDetails = useSelector((state) => state.user.userDetails)
     const [cards, setCards] = useState([]);
     useEffect(() => {
-        setCards([{ heading: "I'm designer looking to share my work", description: " As a designer, you can share your work by creating an impressive online portfolio where peoples can see your talent. ", imgSrc: "/designer.png" },
-        { heading: "I'm looking for hire a designer", description: "Dribbble is the leading source for design inspiration with over 7 million shots from a vast community of designers.", imgSrc: "/hire.png" },
-        { heading: "I'm looking for design inspiration", description: "With over 7 million shots from a vast community of designers, Dribbble is the leading source for design inspiration.", imgSrc: "/inspiration.png" },])
+        setCards([{ heading: "I'm designer looking to share my work", description: " As a designer, you can share your work by creating an impressive online portfolio where peoples can see your talent. ", imgSrc: "https://res.cloudinary.com/df8suxer2/image/upload/v1713090648/n2dxwzjxnf5fq18qgaug.png" },
+        { heading: "I'm looking for hire a designer", description: "Dribbble is the leading source for design inspiration with over 7 million shots from a vast community of designers.", imgSrc: "https://res.cloudinary.com/df8suxer2/image/upload/v1713090020/rvfnfrq0k3wou9c7kkej.png" },
+        { heading: "I'm looking for design inspiration", description: "With over 7 million shots from a vast community of designers, Dribbble is the leading source for design inspiration.", imgSrc: "https://res.cloudinary.com/df8suxer2/image/upload/v1713090089/f9nh1cegtr8q7woauzpg.png" },])
     }, [])
     let Navigate = useNavigate(true);
     const [hook, setHook] = useState([]);
@@ -43,12 +43,12 @@ export default function UserPreferencePage() {
             })
     }
 
-
     return (
         <div className="space-y-11 ">
-            <div className='flex md:justify-start md:pr-0 pr-5 justify-center '>
-                <img className="h-10 self-center pl-5" src="https://res.cloudinary.com/df8suxer2/image/upload/v1712836184/zlj1ovmx3prusxsruccn.png" alt="logo" />
+            <div className='flex justify-start md:pr-0 pr-5 pb-4  '>
+                <img className=" h-14 relative left-9 top-5" src="https://res.cloudinary.com/df8suxer2/image/upload/v1713085030/xlsuba1pijqdde2abjil.png" alt="logo" />
             </div>
+
 
             <div className="flex flex-col justify-center gap-4 ">
                 <div className="text-center">

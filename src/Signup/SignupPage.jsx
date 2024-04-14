@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import { updateProfile } from '../reducers/userDetailsReducer.js'
 import { postDataAPI } from "../apiService.js";
-import signupVideo from "./assets/videos/signup-video.mp4";
+import signupvideo2 from "./assets/videos/signup-video2.mp4"
 
 export default function SignupPage() {
 
@@ -58,22 +58,24 @@ export default function SignupPage() {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <div className="md:flex md:justify-between justify-center gap-10">
+      <div className="md:flex md:justify-between justify-center gap-10 border  ">
 
-        <div className=" h-screen md:block hidden md:sticky md:top-0 " style={{ flexBasis: "35%", minWidth: "30%" }}>
+        <div className=" h-screen md:block hidden top-0 sticky  " style={{ flexBasis: "35%", minWidth: "30%" }}>
+          <img className="h-14 absolute left-9 top-5 " src="https://res.cloudinary.com/df8suxer2/image/upload/v1713085030/xlsuba1pijqdde2abjil.png" alt="logo" />
 
-          <video loop autoPlay={true} muted={true} className="h-full object-cover flex-shrink min-w-[100%]">
-            <source src={signupVideo} type="video/mp4" />
+          <video loop autoPlay muted className="h-full object-cover flex-shrink min-w-[100%]">
+            <source src={signupvideo2} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
 
-        <img className="h-12 md:absolute md:block hidden " src="https://res.cloudinary.com/df8suxer2/image/upload/v1712836184/zlj1ovmx3prusxsruccn.png" alt="logo" />
+
 
         <div className="flex">
           <div className="mt-20 space-y-10 ml-7  md:relative md:bottom-10 ">
 
             <div className="  md:space-x-3 md:space-y-3 md:relative md:top-4 ">
+
               <h1 className="md:text-3xl font-bold	text-2xl ">Sign up to Dribbble</h1>
               <div className=" md:relative w-auto md:h-20 h-14 md:text-nowrap  md:text-xs md:pt-0 pt-2 text-xs text-red-500 ">
                 <li className={`  transition duration-300 ease-in-out opacity-0  ${formik.errors.Name && formik.touched.Name ? "opacity-100" : ""}`}>
