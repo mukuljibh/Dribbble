@@ -2,7 +2,7 @@ import axios from 'axios'
 
 function postDataAPI(userDetails) {
     return new Promise((resolve, reject) => {
-        axios.post('http://localhost:4000/register', {
+        axios.post('https://dribbble-backend-fzto.onrender.com/register', {
             userDetails
         })
             .then((msg) => {
@@ -17,7 +17,7 @@ function postDataAPI(userDetails) {
 
 function sendEmailToUserAPI(userDetails) {
     return new Promise((resolve, reject) => {
-        axios.post('http://localhost:4000/send-email', {
+        axios.post('https://dribbble-backend-fzto.onrender.com/send-email', {
             userDetails
         })
             .then(() => {
