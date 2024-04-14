@@ -1,17 +1,23 @@
 import axios from 'axios'
 
 function postDataAPI(userDetails) {
+    let timer = setTimeout(() => {
+        alert("backend is waking up please wait exactly 1minute to start exploring this demo web application")
+    }, 5000)
     return new Promise((resolve, reject) => {
         axios.post('https://dribbble-backend-fzto.onrender.com/register', {
             userDetails
         })
             .then((msg) => {
+                clearTimeout(timer)
                 resolve(msg.data.message)
             })
             .catch((err) => {
-                console.log(err.response.data.error)
+                clearTimeout(timer)
+                console.log("catch", err.response.data.error)
                 reject(err.response.data.error)
             })
+
     })
 }
 

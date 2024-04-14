@@ -46,22 +46,24 @@ app.post("/register", [
     body("userDetails.Email").notEmpty().withMessage(ErrorMessages.emptyRegexMessage)
         .custom(value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)).withMessage(ErrorMessages.emailRegexMessage)
 ], (req, res) => {
+    setTimeout(() => {
+        const userDataToSave = req.body.userDetails;
+        console.log(userDataToSave)
+        const UserCredentialsObj = new UserCredentialsModel(userDataToSave);
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            console.log(errors.array())
+            return res.status(400).json({ errors: errors.array() });
+        }
+        UserCredentialsObj.save()
+            .then(() => {
+                res.status(200).json({ message: "Data posted into the Database" });
+            })
+            .catch((error) => {
+                res.status(500).json({ error: `Values already exists: ${error.errorResponse.errmsg}` });
+            })
+    }, 10000)
 
-    const userDataToSave = req.body.userDetails;
-    console.log(userDataToSave)
-    const UserCredentialsObj = new UserCredentialsModel(userDataToSave);
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        console.log(errors.array())
-        return res.status(400).json({ errors: errors.array() });
-    }
-    UserCredentialsObj.save()
-        .then(() => {
-            res.status(200).json({ message: "Data posted into the Database" });
-        })
-        .catch((error) => {
-            res.status(500).json({ error: `Values already exists: ${error.errorResponse.errmsg}` });
-        })
 
 })
 
