@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Checkbox } from "@mui/material";
 import ErrorMessages from "./ErrorMessage";
 import { useFormik } from "formik";
@@ -9,11 +9,13 @@ import { updateProfile } from '../reducers/userDetailsReducer.js'
 import { postDataAPI } from "../apiService.js";
 import signupvideo2 from "./assets/videos/signup-video2.mp4"
 
+
 export default function SignupPage() {
 
   //this hook use to navigate to the desired component
   let Navigate = useNavigate(true);
   const dispatch = useDispatch();
+  const [loader, setLoader] = useState(null);
   const formik = useFormik({
     initialValues: {
       Email: "",
@@ -40,6 +42,7 @@ export default function SignupPage() {
 
     }),
     onSubmit: (userDetails) => {
+      setLoader(true)
       //preventing to go to other route until database is not connected
       postDataAPI(userDetails)
         .then((msg) => {
@@ -47,6 +50,7 @@ export default function SignupPage() {
           Navigate('/profile');
         })
         .catch((err) => {
+          setLoader(false)
           alert(err)
         })
 
@@ -152,8 +156,16 @@ export default function SignupPage() {
 
             </div>
 
-            <div className="md:relative md:top-5  ">
+
+            <div className="md:relative md:top-5 flex gap-3  ">
               <button type="submit" className=" transition duration-300 ease-in-out bg-pink-600 text-white px-10 py-2 rounded-md hover:bg-pink-400 focus:bg-pink-400">Create Account</button>
+              {loader ? <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                role="status">
+                <span
+                  className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+                >Loading...</span>
+              </div> : null}
+
             </div>
 
             <div className=" md:hidden relative bottom-6 ">
