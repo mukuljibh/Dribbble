@@ -72,8 +72,8 @@ export default function SignupPage() {
   useEffect(() => {
     let timer = setTimeout(async () => {
       try {
-        let val = await isUserExistAPI(formik.values.Username)
-        SetIsUsernameExists(val);
+        let isUsernameExists = await isUserExistAPI(formik.values.Username)
+        SetIsUsernameExists(isUsernameExists);
       }
       catch (err) {
         throw new Error('database is not connected');
@@ -136,13 +136,13 @@ export default function SignupPage() {
                 <input id="Name" type="text" value={formik.Name} name="Name" onBlur={formik.handleBlur} onChange={formik.handleChange} className=" pl-3 pr-3 rounded-xl py-1 border-2 bg-neutral-100 transition duration-200 ease-in-out hover:border-pink-200 hover:shadow-md focus:border-pink-200 focus:shadow-md outline-none " style={{ width: "calc(100% - 2rem)" }} />
 
               </div>
-              <div className=" md:w-1/2    ">
-                <div className=" flex gap-2 ">
+              <div className=" md:w-1/2 ">
+
+                <div className=" flex gap-2  ">
                   <h1 className="font-bold ">Username</h1>
                   <img className={` ${formik.touched.Username && !formik.values.Username === true ? 'h-4 self-center' : 'hidden'}`} src="https://res.cloudinary.com/df8suxer2/image/upload/v1712836234/o4pfs1kqxhyrv6qqnv64.svg" alt="attention" />
-
                 </div>
-                <input id="Username" type="text" value={formik.Username} name="Username" onBlur={formik.handleBlur} onChange={formik.handleChange} className=" pl-3 pr-3  rounded-xl py-1 border-2 bg-neutral-100 transition duration-200 ease-in-out hover:border-pink-200 hover:shadow-md  focus:border-pink-200 focus:shadow-md outline-none " style={{ width: "calc(100% - 2rem)" }} />
+                <input id="Username" type="text" value={formik.Username} name="Username" onBlur={formik.handleBlur} onChange={formik.handleChange} className={`pl-3 pr-3 rounded-xl py-1 border-2 ${isUsernameExists === true ? 'border-red-400' : ''} bg-neutral-100 transition duration-200 ease-in-out hover:border-pink-200 hover:shadow-md  focus:border-pink-200 focus:shadow-md outline-none`} style={{ width: "calc(100% - 2rem)" }} />
 
               </div>
             </div>
