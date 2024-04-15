@@ -21,7 +21,7 @@ function postDataAPI(userDetails) {
 }
 function isUserExistAPI(typedInput) {
     return new Promise((resolve, reject) => {
-        axios.get(`https://dribbble-backend-fzto.onrender.com/register?checkUserName?Username=${typedInput}`)
+        axios.get(`https://dribbble-backend-fzto.onrender.com/checkUserName?Username=${typedInput}`)
             .then((response) => {
                 resolve(response.data.message)
             })
