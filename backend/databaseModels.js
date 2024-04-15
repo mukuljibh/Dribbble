@@ -11,7 +11,7 @@ const credentialsSchema = new mongoose.Schema({
         unique: true,
         index: true,
     },
-    name: {
+    Name: {
         type: String,
     },
     Password: {

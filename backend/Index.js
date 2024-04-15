@@ -6,9 +6,9 @@ import { UserCredentialsModel } from './databaseModels.js';
 import bcrypt from "bcryptjs"
 import nodemailer from 'nodemailer';
 import { body, validationResult } from 'express-validator';
-import ErrorMessages from '../src/Signup/ErrorMessage.js';
+import ErrorMessages from './ErrorMessage.js';
 
-const uri = "mongodb+srv://mukul:8368555400@dribbblecluster.xnwg76a.mongodb.net/?retryWrites=true&w=majority&appName=dribbblecluster";
+const uri = "mongodb+srv://mukul:8368555400@dribbblecluster.xnwg76a.mongodb.net/DribbbleDB?retryWrites=true&w=majority&appName=dribbblecluster";
 
 const app = express();
 const port = 4000;
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // middleware which fetches 
 app.use(bodyParser.json());
 app.use(cors());//for cross generation support 
 
-const CONNNECTIONSTRING = uri
+const CONNNECTIONSTRING = uri;
 
 function connectToDatabase() {
     //make sure that server open only when database is available
@@ -29,14 +29,22 @@ function connectToDatabase() {
             })
     })
 }
-
-app.get("/sample", (req, res) => {
-    res.send("hello")
+//route for checking username exist already or not
+app.get("/checkUserName", (req, res) => {
+    const isUsernameExist = req.query.Username;
+    UserCredentialsModel.find({ Username: isUsernameExist })
+        .then((data) => {
+            res.status(200).json({ message: data.length > 0 });
+        })
+        .catch((err) => {
+            res.status(500).json({ error: "something goes wrong with the database", message: err });
+        })
 })
+//route for register new user
 app.post("/register", [
     body("userDetails.Username")
         .notEmpty().withMessage(ErrorMessages.emptyRegexMessage)
-        .custom(value => /^\S*$/.test(value)).withMessage('Username must not contain spaces')
+        .custom(value => /^\S*$/.test(value)).withMessage(`Username ${ErrorMessages.spaceNotAllowedRegexMessage}`)
         .isLength({ min: 6 }).withMessage(ErrorMessages.lengthErrorRegexMessage)
     ,
     body("userDetails.Password")
@@ -46,25 +54,28 @@ app.post("/register", [
     body("userDetails.Email").notEmpty().withMessage(ErrorMessages.emptyRegexMessage)
         .custom(value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)).withMessage(ErrorMessages.emailRegexMessage)
 ], (req, res) => {
-    setTimeout(() => {
-        const userDataToSave = req.body.userDetails;
-        console.log(userDataToSave)
-        const UserCredentialsObj = new UserCredentialsModel(userDataToSave);
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            console.log(errors.array())
-            return res.status(400).json({ errors: errors.array() });
-        }
-        UserCredentialsObj.save()
-            .then(() => {
-                res.status(200).json({ message: "Data posted into the Database" });
-            })
-            .catch((error) => {
-                res.status(500).json({ error: `Values already exists: ${error.errorResponse.errmsg}` });
-            })
-    }, 10000)
 
+    const userDataToSave = req.body.userDetails;
+    const UserCredentialsObj = new UserCredentialsModel(userDataToSave);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        console.log(errors.array())
+        return res.status(400).json({ errors: errors.array() });
+    }
+    UserCredentialsObj.save()
+        .then(() => {
+            res.status(200).json({ message: "Data posted into the Database" });
+        })
+        .catch((error) => {
 
+            if (error.code === 11000 && error.keyValue) {
+                const duplicateFields = Object.keys(error.keyValue)[0];
+                res.status(500).json({ error: `${duplicateFields} already registered with us.` });
+            }
+            else {
+                res.status(500).json({ error: `Error saving data: ${error.message}` });
+            }
+        })
 })
 
 app.post("/send-email", async (req, res) => {

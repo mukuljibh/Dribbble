@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Checkbox } from "@mui/material";
 import ErrorMessages from "./ErrorMessage";
 import { useFormik } from "formik";
@@ -6,16 +6,17 @@ import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import { updateProfile } from '../reducers/userDetailsReducer.js'
-import { postDataAPI } from "../apiService.js";
+import { postDataAPI, isUserExistAPI } from "../apiService.js";
 import signupvideo2 from "./assets/videos/signup-video2.mp4"
 
-
 export default function SignupPage() {
-
-  //this hook use to navigate to the desired component
   let Navigate = useNavigate(true);
   const dispatch = useDispatch();
   const [loader, setLoader] = useState(null);
+  const [alreadyTaken, setAlreadyTaken] = useState(null);
+  const [isUsernameExists, SetIsUsernameExists] = useState(null);
+
+
   const formik = useFormik({
     initialValues: {
       Email: "",
@@ -27,8 +28,17 @@ export default function SignupPage() {
     validationSchema: Yup.object({
       Name: Yup.string().required(`Name ${ErrorMessages.emptyRegexMessage}`),
       Username: Yup.string().required(`Username ${ErrorMessages.emptyRegexMessage}`)
+        //api call for check username exist or not
+        .test('custom-validation', `Username ${ErrorMessages.alreadyTakenRegexMessage}`, async (typedInput) => {
+
+          if (!typedInput || !isUsernameExists) {
+            return true;
+          }
+          return false;
+        })
         .min(6, `Username ${ErrorMessages.lengthErrorRegexMessage}`)
-        .matches(/^\S*$/, `Username ${ErrorMessages.SpaceNotAllowedRegexMessage}`)
+        .matches(/^\S*$/, `Username ${ErrorMessages.spaceNotAllowedRegexMessage}`)
+
       ,
       Password: Yup.string().required(`Password ${ErrorMessages.emptyRegexMessage}`)
         .matches(/^[a-zA-Z0-9_\-!@#$%^&*()+=[\]{}|\\;:'",<.>/?]{8,}$/, `Password ${ErrorMessages.passwordRegexMessage}`),
@@ -47,18 +57,31 @@ export default function SignupPage() {
       postDataAPI(userDetails)
         .then((msg) => {
           alert(msg)
+
           Navigate('/profile');
         })
         .catch((err) => {
+          setAlreadyTaken(err)
           setLoader(false)
-          alert(err)
         })
 
       dispatch(updateProfile({ Email: userDetails.Email, Username: userDetails.Username, Name: userDetails.Name }))
-
     }
 
   });
+  useEffect(() => {
+    let timer = setTimeout(async () => {
+      try {
+        let val = await isUserExistAPI(formik.values.Username)
+        SetIsUsernameExists(val);
+      }
+      catch (err) {
+        throw new Error('database is not connected');
+      }
+    }, 450)
+    //clear timeout when input suddenly changes
+    return () => clearTimeout(timer);
+  }, [formik.values.Username])
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -81,7 +104,11 @@ export default function SignupPage() {
             <div className="  md:space-x-3 md:space-y-3 md:relative md:top-4 ">
 
               <h1 className="md:text-3xl font-bold	text-2xl ">Sign up to Dribbble</h1>
-              <div className=" md:relative w-auto md:h-20 h-14 md:text-nowrap  md:text-xs md:pt-0 pt-2 text-xs text-red-500 ">
+              <div className=" text-red-500 border relative md:right-3 md:text-lg text-xs top-2">
+                {alreadyTaken ? alreadyTaken : ''}
+              </div>
+
+              <div className=" md:relative w-auto md:h-20 h-14 md:text-nowrap md:text-xs md:pt-0 pt-2 text-xs text-red-500  relative top-2 ">
                 <li className={`  transition duration-300 ease-in-out opacity-0  ${formik.errors.Name && formik.touched.Name ? "opacity-100" : ""}`}>
                   {formik.touched.Name && formik.errors.Name ? formik.errors.Name : null}
                 </li>
@@ -99,7 +126,7 @@ export default function SignupPage() {
                 </li>
               </div>
             </div>
-            <div className="flex  h-16  ">
+            <div className="flex  h-16   ">
               <div className="md:w-1/2 ">
                 <div className=" flex gap-2 ">
                   <h1 className="font-bold ">Name </h1>

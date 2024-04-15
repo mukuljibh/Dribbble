@@ -8,17 +8,28 @@ function postDataAPI(userDetails) {
         axios.post('https://dribbble-backend-fzto.onrender.com/register', {
             userDetails
         })
-            .then((msg) => {
+            .then((response) => {
                 clearTimeout(timer)
-                resolve(msg.data.message)
+                resolve(response.data.message)
             })
             .catch((err) => {
                 clearTimeout(timer)
-                console.log("catch", err.response.data.error)
                 reject(err.response.data.error)
             })
 
     })
+}
+function isUserExistAPI(typedInput) {
+    return new Promise((resolve, reject) => {
+        axios.get(`https://dribbble-backend-fzto.onrender.com/register?checkUserName?Username=${typedInput}`)
+            .then((response) => {
+                resolve(response.data.message)
+            })
+            .catch((err) => {
+                reject(err)
+            })
+    })
+
 }
 
 function sendEmailToUserAPI(userDetails) {
@@ -55,5 +66,6 @@ function sendImageAPI(ImageUrl) {
 export {
     postDataAPI,
     sendEmailToUserAPI,
-    sendImageAPI
+    sendImageAPI,
+    isUserExistAPI
 }

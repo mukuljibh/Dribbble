@@ -7,7 +7,6 @@ import { updateProfile } from './reducers/userDetailsReducer';
 import { useFormik } from "formik";
 import { sendImageAPI } from './apiService';
 
-
 export default function ProfileCreationPage() {
     let Navigate = useNavigate(true);
     const [imageUploaded, setImageUploaded] = useState(false);
@@ -91,7 +90,7 @@ export default function ProfileCreationPage() {
                                     accept="image/*"
                                     style={{ color: 'black', }}
                                 >
-                                    <p1 className='md:text-md text-xs'> Choose image</p1>
+                                    <h1 className='md:text-md text-xs'> Choose image</h1>
 
                                     <VisuallyHiddenInput type="file" accept=".png .jpg" />
                                 </Button>
