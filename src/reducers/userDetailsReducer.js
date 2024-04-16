@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const userSlice = createSlice({
     name: 'userSlice',
     initialState: {
-        userDetails: {
+        GlobalUserDetails: {
             Name: "",
             Username: "",
             Email: "",
@@ -14,8 +14,8 @@ export const userSlice = createSlice({
     reducers: {
         updateProfile: (state, action) => {
             const userObj = action.payload;
-            state.userDetails = { ...state.userDetails, ...userObj }
-            console.log("state", JSON.parse(JSON.stringify(state.userDetails))); // Convert to plain JS object
+            state.GlobalUserDetails = { ...state.GlobalUserDetails, ...userObj }
+            console.log("state", JSON.parse(JSON.stringify(state.GlobalUserDetails))); // Convert to plain JS object
         },
     }
 });

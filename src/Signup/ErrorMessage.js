@@ -1,4 +1,3 @@
-
 const ErrorMessages = {
     emailRegexMessage: "Email is invalid",
     emptyRegexMessage: "Can't be empty",
@@ -8,6 +7,6 @@ const ErrorMessages = {
     termsConditionRegexMessage: "You must agree to the Terms of Service",
     passwordLengthRegexMessage: "is too short(minimum is 8 characters)",
     spaceNotAllowedRegexMessage: "Spaces are not allowed",
-    isExists: "has already been taken."
+    isExists: "has already been taken.",
 };
 export default ErrorMessages;

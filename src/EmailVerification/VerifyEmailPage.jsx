@@ -1,7 +1,7 @@
 
-import Content from "./childComponent/Content"
-import Footer from "./childComponent/Footer"
-import Header from "./childComponent/Header"
+import Content from "./SharedComponents/Content"
+import Footer from "./SharedComponents/Footer"
+import Header from "./SharedComponents/Header"
 import React from 'react';
 
 export default function VerifyEmailPage() {
@@ -11,6 +11,5 @@ export default function VerifyEmailPage() {
             <Content />
             <Footer />
         </div>
-
     )
 }

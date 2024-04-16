@@ -1,9 +1,9 @@
-import UserPreferencePage from './UserPreferencePage.jsx'
-import ProfileCreationPage from './ProfileCreationPage.jsx';
-import VerifyEmailPage from './EmailVerification/VerifyEmailPage.jsx';
-import SignupPage from './Signup/SignupPage.jsx';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import React from 'react';
+import UserPreferencePage from "./UserPreferencePage.jsx";
+import ProfileCreationPage from "./ProfileCreationPage.jsx";
+import VerifyEmailPage from "./EmailVerification/VerifyEmailPage.jsx";
+import SignupPage from "./Signup/SignupPage.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from "react";
 
 export default function App() {
     return (
@@ -15,5 +15,5 @@ export default function App() {
                 <Route path="/verify-email" element={<VerifyEmailPage />} />
             </Routes>
         </BrowserRouter>
-    )
+    );
 }
