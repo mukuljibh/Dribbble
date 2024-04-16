@@ -72,6 +72,7 @@ export default function SignupPage() {
           navigateTo("/profile");
         })
         .catch((err) => {
+          SetIsLoading(false);
           setAlreadyTaken(err);
         });
       dispatch(
