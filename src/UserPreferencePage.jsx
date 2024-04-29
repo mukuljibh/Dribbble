@@ -98,7 +98,7 @@ export default function UserPreferencePage() {
                 {cardChoices.map((card, index) => (
                     <div
                         key={index}
-                        className={` flex justify-center border-2 hover:border-pink-500 border-gray-200 rounded-3xl  md:h-72 md:w-80 h-72 w-64 self-center  ${selectedCards[index]?.flag && selectedCards[index]?.index === index ? "border-pink-500" : ""}`}
+                        className={` flex justify-center border-2 hover:border-pink-500 border-gray-200 rounded-3xl  md:h-72 md:w-80 h-72 w-64 self-center  ${selectedCards[selectedCards.findIndex((item) => item.index === index)]?.flag ? "border-pink-500" : ""}`}
                     >
                         <div className={` flex flex-col h-64 w-64 justify-end `}>
                             <div className=" md:w-56 w-48 self-center mt-10 relative top-1 flex flex-col ">
