@@ -63,7 +63,7 @@ export default function ProfileCreationPage() {
         width: 1,
     });
     return (
-        <div className=" md:flex inline-flex flex-col ">
+        <div className=" md:flex inline-flex flex-col h-screen ">
             <div className="flex lg:justify-start  justify-center h-28 ">
                 <img
                     className="h-14 absolute left-9 top-5 "
